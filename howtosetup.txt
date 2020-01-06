@@ -26,3 +26,6 @@ Genstart
 
 Kør crontab -e
 indsæt @reboot 
+
+
+Ændre /home/pi/projekt/upload.js til server IP
