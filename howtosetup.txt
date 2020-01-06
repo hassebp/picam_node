@@ -17,7 +17,7 @@ nano /etc/hosts
 
 sudo apt-get install -y libjasper-dev libjpeg8-dev liblcms2-dev
 sudo apt-get install -y ffmpeg
-sudo apt-get install -y git
+sudo apt-get install -y git gpac
 
 git clone https://github.com/RobertElderSoftware/fork-raspiraw && cd fork-raspiraw && git checkout 18fac55136f98960ccd4dcfff95112134e5e45db
 
