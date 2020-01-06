@@ -31,19 +31,19 @@ if sys.argv[1] == '90':
     response.text
 else:
     print("Recording at 660fps")
-    os.system("rm -r /dev/shm/*tiff")
-    os.system("rm -r /dev/shm/*raw")
-    os.system("rm -r /dev/shm/output.mp4")
-    os.system("rm -r /dev/shm/*all")
-    os.system("rm -r /dev/shm/ffmpeg_concats.txt")
-    os.system("rm -r -f /dev/shm/*")
+    os.system("rm -r /opt/temp/*tiff")
+    os.system("rm -r /opt/temp/*raw")
+    os.system("rm -r /opt/temp/output.mp4")
+    os.system("rm -r /opt/temp/*all")
+    os.system("rm -r /opt/temp/ffmpeg_concats.txt")
+    os.system("rm -r -f /opt/temp/*")
     os.system("/home/pi/fork-raspiraw/camera_i2c")
-    os.system("/home/pi/fork-raspiraw/raspiraw -md 7 -t " + sys.argv[2] + " -ts /dev/shm/tstamps.csv -hd0 /dev/shm/hd0.32k -h 128 -w 640 --vinc 1F --fps " + sys.argv[1] + " -sr 1 -o /dev/shm/out.%06d.raw")
-    os.system('ls /dev/shm/*.raw | while read i; do cat /dev/shm/hd0.32k "$i" > "$i".all; done')
-    os.system('ls /dev/shm/*.all | while read i; do /home/pi/dcraw/dcraw -f -o 1 -v  -6 -T -q 3 -W "$i"; done')
+    os.system("/home/pi/fork-raspiraw/raspiraw -md 7 -t " + sys.argv[2] + " -ts /opt/temp/tstamps.csv -hd0 /opt/temp/hd0.32k -h 128 -w 640 --vinc 1F --fps " + sys.argv[1] + " -sr 1 -o /opt/temp/out.%06d.raw")
+    os.system('ls /opt/temp/*.raw | while read i; do cat /opt/temp/hd0.32k "$i" > "$i".all; done')
+    os.system('ls /opt/temp/*.all | while read i; do /home/pi/dcraw/dcraw -f -o 1 -v  -6 -T -q 3 -W "$i"; done')
 
-    os.system("python /home/pi/projekt/picam/make_concat.py " + sys.argv[3] + " > /dev/shm/ffmpeg_concats.txt")
-    os.system('ffmpeg -f concat -safe 0 -i /dev/shm/ffmpeg_concats.txt -vcodec libx265 -x265-params lossless -crf 0 -b:v 1M -pix_fmt yuv420p -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" /dev/shm/output.mp4')
+    os.system("python /home/pi/projekt/picam/make_concat.py " + sys.argv[3] + " > /opt/temp/ffmpeg_concats.txt")
+    os.system('ffmpeg -f concat -safe 0 -i /opt/temp/ffmpeg_concats.txt -vcodec libx265 -x265-params lossless -crf 0 -b:v 1M -pix_fmt yuv420p -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" /opt/temp/output.mp4')
 
     #Get the info from the uploaded config-video.json file
     today = datetime.today()
@@ -60,7 +60,7 @@ else:
     print(finalFileName)
 
     #Convert to h264, and rename file
-    os.system("ffmpeg -i /dev/shm/output.mp4 -an -vcodec libx264 -crf 23 " + finalFileName)
+    os.system("ffmpeg -i /opt/temp/output.mp4 -an -vcodec libx264 -crf 23 " + finalFileName)
 
     #Upload to master
     files = {'video': open(finalFileName, 'rb')}
