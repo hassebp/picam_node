@@ -1,6 +1,9 @@
-
-
 ### Opsætning af ny picam node ###
+
+# Klon projekt fra github
+cd /home/pi
+git clone https://github.com/hassebp/picam_node projekt 
+
 sudo apt-get install -y libjasper-dev libjpeg8-dev liblcms2-dev
 sudo apt-get install -y ffmpeg
 sudo apt-get install -y git
@@ -22,6 +25,8 @@ Indsæt dtparam=i2c_vc=on i /boot/config.txt
 Indsæt i2c-dev i /etc/modules-load.d/modules.conf
 
 Genstart
+
+
 
 
 Kør crontab -e
