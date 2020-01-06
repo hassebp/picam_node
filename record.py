@@ -9,7 +9,7 @@ from datetime import datetime
 print(sys.argv[1])
 if sys.argv[1] == '90':
     print("Recording at 90fps")
-    os.system("raspivid -t " + str(sys.argv[2]) + " -ex fixedfps -o /home/pi/projekt/picam/90fps.h264")
+    os.system("raspivid -t " + str(sys.argv[2]) + " -ex fixedfps -o /home/pi/projekt/90fps.h264")
     os.system("MP4Box -add 90fps.h264 90fps.mp4")
     #Get the info from the uploaded config-video.json file
     today = datetime.today()
@@ -42,7 +42,7 @@ else:
     os.system('ls /opt/temp/*.raw | while read i; do cat /opt/temp/hd0.32k "$i" > "$i".all; done')
     os.system('ls /opt/temp/*.all | while read i; do /home/pi/dcraw/dcraw -f -o 1 -v  -6 -T -q 3 -W "$i"; done')
 
-    os.system("python /home/pi/projekt/picam/make_concat.py " + sys.argv[3] + " > /opt/temp/ffmpeg_concats.txt")
+    os.system("python /home/pi/projekt/make_concat.py " + sys.argv[3] + " > /opt/temp/ffmpeg_concats.txt")
     os.system('ffmpeg -f concat -safe 0 -i /opt/temp/ffmpeg_concats.txt -vcodec libx265 -x265-params lossless -crf 0 -b:v 1M -pix_fmt yuv420p -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" /opt/temp/output.mp4')
 
     #Get the info from the uploaded config-video.json file
