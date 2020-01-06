@@ -8,10 +8,9 @@ sudo apt-get install -y libjasper-dev libjpeg8-dev liblcms2-dev
 sudo apt-get install -y ffmpeg
 sudo apt-get install -y git
 
-cd ~/
 git clone https://github.com/RobertElderSoftware/fork-raspiraw && cd fork-raspiraw && git checkout 18fac55136f98960ccd4dcfff95112134e5e45db
 
-Kopier https://github.com/6by9/raspiraw/blob/master/camera_i2c ind i camera_i2c
+Kopier https://github.com/6by9/raspiraw/blob/master/camera_i2c ind i /home/pi/fork-raspiraw/camera_i2c
 
 ./buildme
 cd ~/
