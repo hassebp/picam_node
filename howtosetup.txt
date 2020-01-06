@@ -42,4 +42,4 @@ Kør crontab -e
 indsæt:
 @reboot cd /home/pi/projekt/ && sudo -u root nodemon index.js > /home/pi/projekt/index.log
 
-Ændre /home/pi/projekt/upload.js til server IP
+Ændre /home/pi/projekt/record.py til server IP
