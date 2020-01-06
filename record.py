@@ -27,7 +27,7 @@ if sys.argv[1] == '90':
     os.rename("90fps.mp4", finalFileName)
     #Upload to master
     files = {'video': open(finalFileName, 'rb')}
-    response = requests.post("http://192.168.0.103:3000/api/uploadvideo", files=files)
+    response = requests.post("http://192.168.0.138:3000/api/uploadvideo", files=files)
     response.text
 else:
     print("Recording at 660fps")
@@ -37,13 +37,13 @@ else:
     os.system("rm -r /opt/temp/*all")
     os.system("rm -r /opt/temp/ffmpeg_concats.txt")
     os.system("rm -r -f /opt/temp/*")
-    os.system("/home/pi/fork-raspiraw/camera_i2c")
-    os.system("/home/pi/fork-raspiraw/raspiraw -md 7 -t " + sys.argv[2] + " -ts /opt/temp/tstamps.csv -hd0 /opt/temp/hd0.32k -h 128 -w 640 --vinc 1F --fps " + sys.argv[1] + " -sr 1 -o /opt/temp/out.%06d.raw")
+    os.system("cd /home/pi/fork-raspiraw/ && sudo -u root ./camera_i2c")
+    os.system("/home/pi/fork-raspiraw/raspiraw -md 7 -t " + sys.argv[2] + " -ts /opt/temp/tstamps.csv -hd0 /opt/temp/hd0.32k -h 128 -w 640 --vinc 1F --fps " + sys.argv[1] + " -sr 1 -o /opt/temp/out.                                                                                                                       %06d.raw")
     os.system('ls /opt/temp/*.raw | while read i; do cat /opt/temp/hd0.32k "$i" > "$i".all; done')
     os.system('ls /opt/temp/*.all | while read i; do /home/pi/dcraw/dcraw -f -o 1 -v  -6 -T -q 3 -W "$i"; done')
 
     os.system("python /home/pi/projekt/make_concat.py " + sys.argv[3] + " > /opt/temp/ffmpeg_concats.txt")
-    os.system('ffmpeg -f concat -safe 0 -i /opt/temp/ffmpeg_concats.txt -vcodec libx265 -x265-params lossless -crf 0 -b:v 1M -pix_fmt yuv420p -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" /opt/temp/output.mp4')
+    os.system('ffmpeg -f concat -safe 0 -i /opt/temp/ffmpeg_concats.txt -vcodec libx265 -x265-params lossless -crf 0 -b:v 1M -pix_fmt yuv420p -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" /opt/temp/output.mp4                                                                                                                       ')
 
     #Get the info from the uploaded config-video.json file
     today = datetime.today()
@@ -64,5 +64,5 @@ else:
 
     #Upload to master
     files = {'video': open(finalFileName, 'rb')}
-    response = requests.post("http://192.168.0.103:3000/api/uploadvideo", files=files)
+    response = requests.post("http://192.168.0.138:3000/api/uploadvideo", files=files)
     response.text
