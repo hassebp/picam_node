@@ -13,7 +13,7 @@ git clone https://github.com/RobertElderSoftware/fork-raspiraw && cd fork-raspir
 Kopier https://github.com/6by9/raspiraw/blob/master/camera_i2c ind i /home/pi/fork-raspiraw/camera_i2c
 
 ./buildme
-cd ~/
+
 git clone https://github.com/RobertElderSoftware/dcraw && cd dcraw && git checkout 8d2bcbe8f9d280a5db8da30af9b6eb034f7f2859
 ./buildme
 
