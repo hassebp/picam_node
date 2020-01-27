@@ -1,6 +1,6 @@
-### Opsætning af ny picam node ###
+### Configuration of picam node ###
 
-# Klon projekt fra github
+# Clone project from github #
 cd /home/pi
 git clone https://github.com/hassebp/picam_node projekt 
 
