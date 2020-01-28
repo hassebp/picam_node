@@ -47,4 +47,5 @@ Run crontab -e and insert
 
 @reboot cd /home/pi/projekt/ && sudo -u root nodemon index.js > /home/pi/projekt/index.log
 
-Change in file: /home/pi/projekt/record.py to webserver IP address (2 places)
+Change in file: "/home/pi/projekt/record.py" to webserver IP address (2 places)
+Change in file: "/home/pi/projekt/config.json" to webserver IP address
