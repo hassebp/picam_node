@@ -36,8 +36,8 @@ git clone https://github.com/RobertElderSoftware/dcraw && cd dcraw && git checko
 sudo apt-get install wiringpi
 sudo apt-get install i2c-tools
 
-Insert: dtparam=i2c_vc=on i /boot/config.txt
-Insert: i2c-dev i /etc/modules-load.d/modules.conf
+Insert: "dtparam=i2c_vc=on" in "/boot/config.txt"
+Insert: "i2c-dev" in "/etc/modules-load.d/modules.conf"
 
 Reboot
 
