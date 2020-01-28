@@ -15,7 +15,7 @@ Insert name on picam_node
 nano /etc/hostname
 nano /etc/hosts
 
-# Reboot
+# Reboot #
 
 # Install the 660 fps software #
 sudo apt-get install -y libjasper-dev libjpeg8-dev liblcms2-dev
@@ -31,6 +31,7 @@ Copy "https://github.com/6by9/raspiraw/blob/master/camera_i2c" into "/home/pi/fo
 
 git clone https://github.com/RobertElderSoftware/dcraw && cd dcraw && git checkout 8d2bcbe8f9d280a5db8da30af9b6eb034f7f2859
 ./buildme
+# The warning can safely be ignored #
 
 sudo apt-get install wiringpi
 sudo apt-get install i2c-tools
