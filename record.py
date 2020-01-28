@@ -38,7 +38,7 @@ if sys.argv[1] == '90':
     os.rename("90fps.mp4", finalFileName)
     #Upload to master
     files = {'video': open(finalFileName, 'rb')}
-    response = requests.post("http://192.168.0.138:3000/api/uploadvideo", files=files)
+    response = requests.post("http://webserveripaddress:3000/api/uploadvideo", files=files)
     response.text
     os.system("rm /home/pi/projekt/*.mp4")
     os.system("rm /home/pi/projekt/*.h264")
@@ -85,7 +85,7 @@ else:
 
     #Upload to master
     files = {'video': open(finalFileName, 'rb')}
-    response = requests.post("http://192.168.0.138:3000/api/uploadvideo", files=files)
+    response = requests.post("http://webserveripaddress:3000/api/uploadvideo", files=files)
     response.text
     os.system("rm /home/pi/projekt/*.mp4")
     os.system("rm /home/pi/projekt/*.h264")
