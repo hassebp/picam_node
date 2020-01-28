@@ -15,6 +15,8 @@ Insert name on picam_node
 nano /etc/hostname
 nano /etc/hosts
 
+# Reboot
+
 # Install the 660 fps software #
 sudo apt-get install -y libjasper-dev libjpeg8-dev liblcms2-dev
 sudo apt-get install -y ffmpeg
