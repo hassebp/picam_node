@@ -6,7 +6,6 @@ import shotname
 # $1 param is fps
 # $2 length to record
 # $3 slowdown
-# $4 shot
 
 print(sys.argv[1])
 if sys.argv[1] == '90':
@@ -23,15 +22,6 @@ if sys.argv[1] == '90':
         finalFileName += "-" + str(data["length"])
         finalFileName += "-" + "0"
         finalFileName += "-" + str(data["name"])
-
-
-    #If shot is true, get the next shot value from the database
-    if sys.argv[4] == 'true':
-        #test:
-        finalFileName += '-124'
-
-        #prod:
-        #finalFileName += shotname.GetNextShotNumber
 
     finalFileName+=".mp4"
     print(finalFileName)
@@ -68,14 +58,6 @@ else:
         finalFileName += "-" + str(data["length"])
         finalFileName += "-" + str(data["slowdown"])
         finalFileName += "-" + str(data["name"])
-
-    #If shot is true, get the next shot value from the database
-    if sys.argv[4] == 'true':
-        #test:
-        finalFileName += '-124'
-
-        #prod:
-        #finalFileName += shotname.GetNextShotNumber
 
     finalFileName+=".mp4"
     print(finalFileName)
