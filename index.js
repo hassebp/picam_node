@@ -20,7 +20,7 @@ app.post('/api/video', (req, res) => {
     fs.writeFileSync('config-video.json', JSON.stringify(req.body));
 
 
-    const scriptRun = "python /home/pi/projekt/record.py " + req.body.fps + " " + req.body.length + " " + req.body.slowdown
+     const scriptRun = "python /home/pi/projekt/record.py " + req.body.fps + " " + req.body.length + " " + req.body.slowdown + " > /home/pi/projekt/record.log"
 
     exec(scriptRun, (err, stdout, stderr) => {
         if (err) {
